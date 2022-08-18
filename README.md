@@ -14,13 +14,12 @@ would be taken care on the front end by deleting the token.
 
 ### Dog Routes
 
-1. I had all id's recieved through the body of a request rather than params, which can be changed depending on what is preferred from the frontend devs.
+1. I had all id's received through the body of a request rather than parameters, which can be changed depending on what is preferred from the frontend devs.
 2. All the dog routes just return all dogs which was done just to be safe. This can be changed to improve efficiency.
 
 ### Model Design
 
-The dogs were included as a subdocument to the user. I went with this design choice assuming the dogs would only really be viewed by the logged in user
-and not other users. If this were the case I would most likely move the Dogs into their own collection and store references in the Users document.
+The dogs were included as a subdocument to the user. I went with this design choice assuming the dogs list wouldn't get too large and would only really be viewed by the logged in user and not other users. If this were the case I would most likely move the Dogs into their own collection and store references in the Users document.
 
 All passwords are hashed.
 
@@ -30,11 +29,11 @@ USER
 {
   email: string,
   password: string,
-  dogs: {
+  dogs: [{
     name: string,
     dob: date,
     breed: string
-  }
+  }]
 }
 ```
 
@@ -149,6 +148,7 @@ returns all dogs
 ## Demo Video
 
 
+https://user-images.githubusercontent.com/26681440/185389146-1568c685-8d7a-4229-9c71-4d559693c39a.mp4
 
 
 ## Links
