@@ -19,7 +19,7 @@ module.exports = {
 
     // if no user -> error
     if(!user) {
-      return res.status(400).json({ message: 'User not found' })
+      return res.status(400).json({ message: 'User not found' });
     }
 
     return res.json(user.dogs);
@@ -32,17 +32,17 @@ module.exports = {
 
     // if no user -> error
     if(!user) {
-      return res.status(400).json({ message: 'User not found' })
+      return res.status(400).json({ message: 'User not found' });
     }
 
     const dog = user.dogs.id(dogId);
 
     // if no dog-> error
     if(!dog) {
-      return res.status(400).json({ message: 'Dog not found' })
+      return res.status(400).json({ message: 'Dog not found' });
     }
 
-    return res.json(dog);
+    return res.status(200).json(dog);
   },
 
   // add dog
@@ -52,7 +52,7 @@ module.exports = {
 
     // if no user -> error
     if(!user) {
-      return res.status(400).json({ message: 'User not found' })
+      return res.status(400).json({ message: 'User not found' });
     }
     
     // if breed is valid, add the dog
@@ -61,10 +61,10 @@ module.exports = {
       user.dogs.push(newDog);
       user = await user.save();
     } else {
-      return res.status(400).json({ message: 'invalid breed' })
+      return res.status(400).json({ message: 'invalid breed' });
     }
 
-    return res.status(200).json(user.dogs)
+    return res.status(200).json(user.dogs);
   },
 
   // update dog -> still needs input checking
@@ -74,12 +74,12 @@ module.exports = {
 
     // if no user -> error
     if(!user) {
-      return res.status(400).json({ message: 'User not found' })
+      return res.status(400).json({ message: 'User not found' });
     }
 
     // check for valid breed input
     if(!checkBreed(breed)) {
-      return res.status(400).json({ message: 'invalid breed' })
+      return res.status(400).json({ message: 'invalid breed' });
     }
     
     // if dog exists, update it
@@ -89,7 +89,7 @@ module.exports = {
       user.dogs.id(dogId).breed = breed;
       user = await user.save();
     } else {
-      return res.status(400).json({ message: 'Dog not found' })
+      return res.status(400).json({ message: 'Dog not found' });
     }
 
     return res.status(200).json(user.dogs);
@@ -102,7 +102,7 @@ module.exports = {
 
     // if no user -> error
     if(!user) {
-      return res.status(400).json({ message: 'User not found' })
+      return res.status(400).json({ message: 'User not found' });
     }
 
     user.dogs = user.dogs.filter(dog => dog.id != dogId);

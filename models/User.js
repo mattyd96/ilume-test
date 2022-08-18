@@ -1,5 +1,5 @@
 const { model, Schema } = require('mongoose');
-bcrypt = require('bcrypt'),
+const bcrypt = require('bcrypt'),
 SALT_WORK_FACTOR = 10;
 
 const dogSchema = require('./Dog');

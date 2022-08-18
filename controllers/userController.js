@@ -9,13 +9,13 @@ module.exports = {
     // validate user input -> can use errors for updates on frontend
     const validation = validateSignupInput(email, password);
     if(!validation.valid) {
-      return res.status(400).json(validation.errors)
+      return res.status(400).json(validation.errors);
     }
 
     // Make sure email doesn't already exist
     let user = await User.findOne({ email });
     if (user) {
-      return res.status(400).json({ message: 'This email is already registered as a user' })
+      return res.status(400).json({ message: 'This email is already registered as a user' });
     }
 
     // create new user
@@ -28,7 +28,7 @@ module.exports = {
     const response = await newUser.save();
 
     // return id -> could be a JWT or session token
-    return res.json(response.id)
+    return res.status(200).json(response.id);
   },
 
   // login an existing user
@@ -38,7 +38,7 @@ module.exports = {
     // validate user input -> can use errors for updates on frontend
     const validation = validateLoginInput(email, password);
     if(!validation.valid) {
-      return res.status(400).json(validation.errors)
+      return res.status(400).json(validation.errors);
     }
 
     // find user with email
@@ -46,17 +46,17 @@ module.exports = {
 
     // if no user -> error
     if(!user) {
-      return res.status(400).json({ message: 'Incorrect credentials' })
+      return res.status(400).json({ message: 'Incorrect credentials' });
     }
 
     const match = await user.validatePassword(password);
 
     // if password doesn't match -> error
     if (!match) {
-      return res.status(400).json({ message: 'Incorrect credentials' })
+      return res.status(400).json({ message: 'Incorrect credentials' });
     }
 
     // return id -> could be a JWT or session token
-    return res.json(user.id)
+    return res.status(200).json(user.id);
   }
 }
