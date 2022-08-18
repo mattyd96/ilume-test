@@ -15,7 +15,7 @@ would be taken care on the front end by deleting the token.
 ### Dog Routes
 
 1. I had all id's received through the body of a request rather than parameters, which can be changed depending on what is preferred from the frontend devs.
-2. All the dog routes just return all dogs which was done just to be safe. This can be changed to improve efficiency.
+2. Most of the dog routes just return all dogs which was done just to be safe. This can be changed to improve efficiency.
 
 ### Model Design
 
