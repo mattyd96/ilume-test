@@ -6,6 +6,8 @@
 
 ## Design choices and assumptions
 
+The api was written assuming some sort of front-end component framework or library. So it is made only to serve JSON data and contains no page redirects.
+
 ### User Routes
 
 1. There is only a route for signup and login based on the assumption that there would be a JWT sytem inplace, so logout functionality
