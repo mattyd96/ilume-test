@@ -1,9 +1,16 @@
 const {User} = require('../models');
+const {validateSignupInput, validateLoginInput} = require('../util/validation');
 
 module.exports = {
   // signup new user
   signup: async (req, res) => {
     const {email, password} = req.body;
+
+    // validate user input -> can use errors for updates on frontend
+    const validation = validateSignupInput(email, password);
+    if(!validation.valid) {
+      return res.status(400).json(validation.errors)
+    }
 
     // Make sure email doesn't already exist
     let user = await User.findOne({ email });
@@ -27,6 +34,12 @@ module.exports = {
   // login an existing user
   login: async (req, res) => {
     const {email, password} = req.body;
+
+    // validate user input -> can use errors for updates on frontend
+    const validation = validateLoginInput(email, password);
+    if(!validation.valid) {
+      return res.status(400).json(validation.errors)
+    }
 
     // find user with email
     const user = await User.findOne({ email });
